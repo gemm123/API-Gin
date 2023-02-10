@@ -13,6 +13,7 @@ pipeline {
             steps {
                 sh 'go version'
                 sh 'go get ./...'
+                sh 'docker rmi gemm123/api-gin'
                 sh 'docker build . -t gemm123/api-gin'
             }
         }
