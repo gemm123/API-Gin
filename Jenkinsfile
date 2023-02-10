@@ -9,6 +9,10 @@ pipeline {
         GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
     }
     stages {
+        stage('Dokcer Stop and Delete Container') {
+            sh 'docker stop api-gin'
+            sh 'docker rm api-gin'
+        }
         stage('Build') { 
             steps {
                 sh 'go version'
@@ -25,6 +29,10 @@ pipeline {
                 sh 'docker push gemm123/api-gin'
                 }
             }
+        }
+        stage('Dokcer Create Container') {
+            sh 'docker container create --name api-gin -o 8081:8080 gemm123/api-gin'
+            sh 'docker container start api-gin'
         }
     }
 }
