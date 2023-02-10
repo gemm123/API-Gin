@@ -31,7 +31,7 @@ pipeline {
             }
         }
         stage('Dokcer Create Container') {
-            sh 'docker container create --name api-gin -p 8081:8080 gemm123/api-gin'
+            sh 'docker container create --name api-gin -p 8081:8081 gemm123/api-gin'
             sh 'docker container start api-gin'
         }
     }
