@@ -27,12 +27,16 @@ pipeline {
             }
         }
         stage('Dokcer Stop and Delete Container') {
-            sh 'docker stop api-gin'
-            sh 'docker rm api-gin'
+            steps {
+                sh 'docker stop api-gin'
+                sh 'docker rm api-gin'
+            }
         }
         stage('Dokcer Create Container') {
+            steps {
             sh 'docker container create --name api-gin -p 8081:8081 gemm123/api-gin'
             sh 'docker container start api-gin'
+            }
         }
     }
 }
