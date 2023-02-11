@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Dokcer Stop and Delete Container') {
             steps {
-                sh 'docker stop api-gin'
+                sh 'docker container stop api-gin'
                 sh 'docker rm api-gin'
             }
         }
